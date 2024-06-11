@@ -49,17 +49,18 @@ const updateBook = async (req, res) => {
 const deleteBook = async (req, res) => {
   const { id } = req.params;
   try {
-    console.log("ID del libro a eliminar:", id);
-    let book = await Book.findById(id);
+    let book = await Book.findByIdAndDelete(id);
     if (!book) return res.status(404).json({ msg: "Book not found" });
 
-    await book.remove();
     res.json({ msg: "Book removed" });
   } catch (err) {
-    console.error(err); // Muestra el error en la consola
     res.status(500).json({ msg: "Server Error", error: err.message });
-    // res.status(500).send("Server Error");
   }
 };
 
-module.exports = { getAllBooks, addBook, updateBook, deleteBook };
+module.exports = {
+  getAllBooks,
+  addBook,
+  updateBook,
+  deleteBook,
+};

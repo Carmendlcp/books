@@ -5,6 +5,8 @@ const {
   addBook,
   updateBook,
   deleteBook,
+  searchByTitle,
+  searchByAuthor,
 } = require("../controllers/bookController");
 const auth = require("../middleware/auth");
 
