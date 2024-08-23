@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const connectDB = require("./config/db");
 const dotenv = require("dotenv");
 
@@ -8,6 +9,9 @@ const app = express();
 
 // Connect to database
 connectDB();
+
+// Habilitar CORS
+app.use(cors());
 
 // Init Middleware
 app.use(express.json({ extended: false }));
