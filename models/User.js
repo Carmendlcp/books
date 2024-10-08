@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const UserSchema = new mongoose.Schema({
   username: { type: String },
@@ -7,4 +8,12 @@ const UserSchema = new mongoose.Schema({
   borrowedBooks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Book" }],
 });
 
-module.exports = mongoose.model("User", UserSchema);
+// Método para comparar contraseñas
+UserSchema.methods.comparePassword = async function (candidatePassword) {
+  return await bcrypt.compare(candidatePassword, this.password);
+};
+
+const User = mongoose.model("User", UserSchema);
+module.exports = User;
+
+// module.exports = mongoose.model("User", UserSchema);

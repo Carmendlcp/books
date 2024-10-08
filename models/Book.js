@@ -3,11 +3,16 @@ const mongoose = require("mongoose");
 const BookSchema = new mongoose.Schema({
   title: { type: String, required: true },
   author: { type: String, required: true },
+  category: { type: String },
+  coverImage: { type: String },
+  synopsis: { type: String },
+  rating: { type: Number },
   isBorrowed: { type: Boolean, default: false },
   borrowedBy: { type: String },
-  currentPage: { type: Number, default: 0 },
+  currentPage: { type: Number },
+  publicationDate: { type: Date },
+  pageCount: { type: Number },
+  review: { type: String },
 });
-
-router.get("/:id", auth, getBookById); // Asegúrate de que la autenticación esté en su lugar
 
 module.exports = mongoose.model("Book", BookSchema);

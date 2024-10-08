@@ -14,10 +14,37 @@ const getAllBooks = async (req, res) => {
 //Añadir un libro nuevo
 
 const addBook = async (req, res) => {
-  const { title, author } = req.body;
+  const {
+    title,
+    author,
+    category,
+    coverImage,
+    synopsis,
+    rating,
+    isBorrowed,
+    borrowedBy,
+    currentPage,
+    publicationDate,
+    pageCount,
+    review,
+  } = req.body;
   try {
-    const newBook = new Book({ title, author });
+    const newBook = new Book({
+      title,
+      author,
+      category,
+      coverImage,
+      synopsis,
+      rating,
+      isBorrowed,
+      borrowedBy,
+      currentPage,
+      publicationDate: new Date(publicationDate),
+      pageCount: parseInt(pageCount, 10),
+      review,
+    });
     await newBook.save();
+    console.log("New book saved:", newBook);
     res.json(newBook);
   } catch (err) {
     res.status(500).send("Server Error");
@@ -74,4 +101,5 @@ module.exports = {
   addBook,
   updateBook,
   deleteBook,
+  getBookById,
 };
