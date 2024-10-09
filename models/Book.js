@@ -6,7 +6,6 @@ const BookSchema = new mongoose.Schema({
   category: { type: String },
   coverImage: { type: String },
   synopsis: { type: String },
-  rating: { type: Number },
   isBorrowed: { type: Boolean, default: false },
   borrowedBy: { type: String },
   currentPage: { type: Number },

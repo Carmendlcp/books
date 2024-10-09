@@ -31,15 +31,12 @@ const loginUser = async (req, res) => {
 
 // Middleware de autenticación
 const auth = (req, res, next) => {
-  console.log("Entrando al middleware de autenticación...");
-  console.log("Headers recibidos:", req.headers);
   const token = req.header("x-auth-token");
   if (!token)
     return res.status(401).json({ msg: "No hay token, autorización denegada" });
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Token decodificado:", decoded);
     req.user = decoded.user; // Guardamos la información del usuario en la solicitud
     next(); // Pasamos al siguiente middleware o ruta
   } catch (err) {

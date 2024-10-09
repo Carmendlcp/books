@@ -20,7 +20,6 @@ const addBook = async (req, res) => {
     category,
     coverImage,
     synopsis,
-    rating,
     isBorrowed,
     borrowedBy,
     currentPage,
@@ -35,7 +34,6 @@ const addBook = async (req, res) => {
       category,
       coverImage,
       synopsis,
-      rating,
       isBorrowed,
       borrowedBy,
       currentPage,
@@ -44,7 +42,6 @@ const addBook = async (req, res) => {
       review,
     });
     await newBook.save();
-    console.log("New book saved:", newBook);
     res.json(newBook);
   } catch (err) {
     res.status(500).send("Server Error");

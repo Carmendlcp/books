@@ -13,7 +13,7 @@ connectDB();
 // Habilitar CORS
 app.use(cors());
 
-// Init Middleware
+// Inicia Middleware
 app.use(express.json({ extended: false }));
 
 // Define Routes
